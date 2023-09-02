@@ -8,7 +8,7 @@ const handleCategory = async () =>{
     categories.forEach((category) => {
         const button = document.createElement("button");
         button.innerHTML = `
-        <button onclick = "handleLoadCategories('${category.category_id}')" class="btn text-black">${category.category}</button>
+        <button onclick = "handleLoadCategories('${category.category_id}')" class="btn text-black active:bg-red-600">${category.category}</button>
         `;
         btnContainer.appendChild(button);
     });
