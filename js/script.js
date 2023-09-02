@@ -8,7 +8,7 @@ const handleCategory = async () =>{
     categories.forEach((category) => {
         const button = document.createElement("button");
         button.innerHTML = `
-        <button onclick = "handleLoadCategories('${category.category_id}')" class="btn text-black active:bg-red-600">${category.category}</button>
+        <button onclick = "handleLoadCategories('${category.category_id}')" class="btn text-black focus:bg-red-600">${category.category}</button>
         `;
         btnContainer.appendChild(button);
     });
@@ -20,9 +20,24 @@ const handleLoadCategories = async (categoryId) =>{
     `);
     const data = await res.json();
 
+    
     const videoContainer = document.getElementById('videos-container');
 
     videoContainer.textContent = '';
+
+    if(data.data.length === 0){
+        const fullContainer = document.getElementById("full-container");
+        fullContainer.textContent = '';
+        const div = document.createElement("div");
+        div.innerHTML = `
+        <div class="flex flex-col items-center justify-center text-center">
+          <img src="img/Icon.png" alt="">
+          <p class="text-2xl font-bold">Oops!! Sorry, <br> There is no content here</p>
+        </div>
+        `;
+        fullContainer.appendChild(div);
+        return;
+    }
 
     data.data.forEach((videos) =>{
         const seconds = videos.others.posted_date;
@@ -34,26 +49,12 @@ const handleLoadCategories = async (categoryId) =>{
             return `${hours} hrs ${minutes} min ago`;
         }
 
-        if(data.data.length < 0){
-            console.log("no data");
-            const fullContainer = document.getElementById("full-container");
-            fullContainer.textContent = '';
-            const div = document.createElement("div");
-            div.innerHTML = `
-            <div class="flex flex-col items-center justify-center text-center">
-              <img src="img/Icon.png" alt="">
-              <p>Oops!! Sorry, There is no content here</p>
-            </div>
-            `;
-            fullContainer.appendChild(div);
-        }
-        else{
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card bg-base-100 shadow-xl">
         <figure class="relative px-5 pt-5">
         <img src="${videos.thumbnail}" alt="Shoes" class="rounded-xl h-52" />
-        <p class="absolute bottom-2 right-10 text-white bg-black rounded-lg p-1"> 
+        <p class="absolute bottom-2 right-10 text-white ${videos.others.posted_date?"bg-black" : ""} rounded-lg p-1"> 
         ${videos.others.posted_date ? secondsToHoursMinutes(seconds) : " "}
         </p>
         </figure>
@@ -74,7 +75,6 @@ const handleLoadCategories = async (categoryId) =>{
       </div>
         `;
         videoContainer.appendChild(div);
-        }
     });
 };
 
@@ -84,7 +84,6 @@ function openBlog(){
 function goBack(){
     window.location.href = "index.html";
 }
-
 
 handleCategory();
 handleLoadCategories("1000");
