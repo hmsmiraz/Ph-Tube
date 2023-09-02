@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main>
+      <button onclick="goBack()" class="btn btn-neutral my-2 ">Go back</button>
+      <h2 class="text-2xl">Discuss the scope of var, let, and const</h2>
+      <h3 class="text-xl">1. var</h3>
+      <ul>
+        <li>
+          Function Scope:Variables declared with var have function scope,
+          meaning they are accessible anywhere within the function in which they
+          are declared.
+        </li>
+        <li>
+          Hoisting: Variables declared with var are hoisted to the top of their
+          containing function or global scope. This means you can access a var
+          variable before it's declared, but it will be undefined.
+        </li>
+        <li>
+          No Block Scope: Unlike let and const, var variables are not
+          block-scoped. This means they can "leak" out of if statements, loops,
+          and other block structures.
+        </li>
+      </ul>
+      <h3 class="text-xl">2. let</h3>
+      <ul>
+        <li>
+          Block Scope: Variables declared with let have block scope, meaning
+          they are accessible only within the block in which they are defined.
+        </li>
+        <li>
+          Hoisting: Like var, let variables are hoisted but are not initialized.
+          Trying to access a let variable before its declaration will result in
+          a ReferenceError.
+        </li>
+      </ul>
+      <h3 class="text-xl">3. const</h3>
+      <ul>
+        <li>
+          Block Scope: Variables declared with const also have block scope, just
+          like let.
+        </li>
+        <li>
+          Constant Value: const variables are used for values that should not be
+          reassigned after declaration. While the variable itself is immutable,
+          the content of objects and arrays declared with const can still be
+          modified.
+        </li>
+      </ul>
+
+      <h2 class="text-2xl">Tell us the use cases of null and undefined</h2>
+      <h3 class="text-xl">1. undefined</h3>
+      <ul>
+        <li>
+          Default Value: Variables that are declared but not initialized or
+          don't have a value assigned to them are automatically set to
+          undefined.
+        </li>
+        <li>
+          Function Parameters: When a function is called with fewer arguments
+          than declared parameters, the missing parameters are assigned the
+          value undefined.
+        </li>
+        <li>
+          Object Properties: If you try to access an object property that
+          doesn't exist, JavaScript returns undefined.
+        </li>
+        <li>
+          Return Value: If a function doesn't explicitly return a value, it
+          implicitly returns undefined.
+        </li>
+      </ul>
+      <h3 class="text-xl">2. null</h3>
+      <ul>
+        <li>
+          Explicit Absence of Value: null is explicitly assigned to a variable
+          or property to indicate the absence of a value. It is often used when
+          you want to represent that a variable should have no value or that an
+          object property should be empty.
+        </li>
+        <li>
+          Comparison with undefined: null is sometimes used when you want to
+          distinguish between the absence of a value (null) and a variable not
+          being defined or initialized (undefined).
+        </li>
+        <li>
+          Clearing Object Properties: You can set an object property to null to
+          indicate that it should be empty or cleared.
+        </li>
+      </ul>
+      <h2 class="text-2xl">What do you mean by REST API?</h2>
+      <p>
+        A REST API is a way for computers (like websites and apps) to talk to
+        each other over the internet. It's like a menu in a restaurant. The menu
+        tells you what dishes are available and what you can do with them (like
+        order, update, or delete). Here's a simple breakdown:
+      </p>
+      <ol>
+        <li>
+          Menu: The API has a list of things you can do (like "get data" or "add
+          data"). Each thing you can do is like an item on the menu.
+        </li>
+
+        <li>
+          Orders: When you want to do something, you send a request to the API,
+          just like ordering food from a menu.
+        </li>
+
+        <li>
+          Dishes: The API gives you the data or performs the action you asked
+          for, just like how the restaurant gives you the food you ordered.
+        </li>
+
+        <li>
+          Waiter: The API is like a waiter who takes your order (request) and
+          brings you what you asked for (response).
+        </li>
+
+        <li>
+          Table: The internet is like a big restaurant with many tables
+          (computers). REST APIs help tables (computers) communicate with each
+          other by following a set of rules.
+        </li>
+      </ol>
+      <p>
+        In summary, a REST API is like a menu for computers on the internet,
+        allowing them to order and exchange information in a structured way.
+        It's a way for different programs to talk to each other and share data.
+      </p>
+    </main>
+    <script src="js/script.js"></script>
+  </body>
+</html>

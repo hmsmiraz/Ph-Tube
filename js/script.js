@@ -12,7 +12,6 @@ const handleCategory = async () =>{
         `;
         btnContainer.appendChild(button);
     });
-    // console.log(categories);
 };
 
 const handleLoadCategories = async (categoryId) =>{
@@ -35,13 +34,27 @@ const handleLoadCategories = async (categoryId) =>{
             return `${hours} hrs ${minutes} min ago`;
         }
 
+        if(data.data.length < 0){
+            console.log("no data");
+            const fullContainer = document.getElementById("full-container");
+            fullContainer.textContent = '';
+            const div = document.createElement("div");
+            div.innerHTML = `
+            <div class="flex flex-col items-center justify-center text-center">
+              <img src="img/Icon.png" alt="">
+              <p>Oops!! Sorry, There is no content here</p>
+            </div>
+            `;
+            fullContainer.appendChild(div);
+        }
+        else{
         const div = document.createElement("div");
         div.innerHTML = `
         <div class="card bg-base-100 shadow-xl">
         <figure class="relative px-5 pt-5">
         <img src="${videos.thumbnail}" alt="Shoes" class="rounded-xl h-52" />
         <p class="absolute bottom-2 right-10 text-white bg-black rounded-lg p-1"> 
-        ${videos.others.posted_date ? secondsToHoursMinutes(seconds) : ""}
+        ${videos.others.posted_date ? secondsToHoursMinutes(seconds) : " "}
         </p>
         </figure>
         <div class="card-body flex flex-row">
@@ -61,8 +74,16 @@ const handleLoadCategories = async (categoryId) =>{
       </div>
         `;
         videoContainer.appendChild(div);
+        }
     });
 };
+
+function openBlog(){
+    window.location.href = "blog.html";
+}
+function goBack(){
+    window.location.href = "index.html";
+}
 
 
 handleCategory();
